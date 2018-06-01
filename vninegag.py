@@ -10,7 +10,7 @@ iasf='https://img-9gag-fun.9cache.com/photo/'
 
 ### Getting link of gag from 1st position
 def getGag():
-    a = urllib.request.urlopen(url)
+    a = urllib.request.urlopen(ninegag)
     enc = a.headers.get_content_charset("utf-8")
     d = a.read()
     b = d.decode(enc)
