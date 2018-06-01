@@ -6,9 +6,6 @@ ninegag = "http://9gag.com/"
 ### This is how script recognize new article.
 wWSf='"position":1,"url":"https:\/\/9gag.com\/gag\/'
 iasf='https://img-9gag-fun.9cache.com/photo/'
-
-### Taking page html source to string
-def pageToStr(url):
     
 
 ### Getting link of gag from 1st position
