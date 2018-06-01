@@ -6,14 +6,17 @@ ninegag = "http://9gag.com/"
 ### This is how script recognize new article.
 wWSf='"position":1,"url":"https:\/\/9gag.com\/gag\/'
 iasf='https://img-9gag-fun.9cache.com/photo/'
-    
+
+### Getting html source code
+def pageToStr(url):
+    a = urllib.request.urlopen(url)
+    enc = a.headers.get_content_charset("utf-8")
+    d = a.read()
+    return d.decode(enc)
 
 ### Getting link of gag from 1st position
 def getGag():
-    a = urllib.request.urlopen(ninegag)
-    enc = a.headers.get_content_charset("utf-8")
-    d = a.read()
-    b = d.decode(enc)
+    pageToStr(ninegag)
     c = b.find(wWSf)+45
     ce= len(b)-c-7
     gag = b[c:-ce]
