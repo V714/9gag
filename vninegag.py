@@ -30,8 +30,13 @@ def getTitle(link):
 
 ### Returning link to content (gif/photo/video) as a string.
 def getLink(link):
-    b = pageToStr(ninegag)
+    b = pageToStr(link)
     c = b.find(wWSf)+45
     ce= len(b)-c-7
     gag = b[c:-ce]
-    return iasf+gag+"_460svvp9.webm"
+    check = iasf+gag+"_460svvp9.webm"
+    if getTitle(check)=="9GAG - 404 Nothing here":
+        return iasf+gag+"_700bwp.webp"
+
+    else:
+        return check
