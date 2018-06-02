@@ -2,10 +2,18 @@
 
 import urllib
 import requests
+
 ninegag = "http://9gag.com/"
 ### This is how script recognize new article.
 wWSf='"position":1,"url":"https:\/\/9gag.com\/gag\/'
 iasf='https://img-9gag-fun.9cache.com/photo/'
+
+def exists(url, file):
+    conn = httplib.HTTPConnection(url)
+    conn.request('HEAD', file)
+    response = conn.getresponse()
+    conn.close()
+    return response.status == 200
 
 def pageToStr(url):
     a = urllib.request.urlopen(url)
@@ -26,16 +34,19 @@ def getTitle(link):
     b = pageToStr(link)
     c = b.find("<title>")+7
     d = len(b)-b.find("</title>")+7
-    return str(b[c:-d]).replace("&#039;","'")
+    return str("[ "+b[c:-d]+" ]").replace("&#039;","'")
 
 ### Returning link to content (gif/photo/video) as a string.
 def getLink(link):
     gag = link[20:]
-    check = iasf+"a6o2bgb"+"_460svvp9.webm"
-    request = requests.get(check)
-    ### If this is video
-    if request.status_code == 200:
+    check = iasf+gag+"_460svvp9.webm"
+    r = requests.get(check)
+    if r.status_code == 200:
         return check
-    ### If this is a photo
     else:
-         return iasf+gag+"_700bwp.webp"
+        return iasf+gag+"_700bwp.webp"
+    
+    #if UnicodeDecodeError:
+    #    return check
+    #else:
+    #    return iasf+gag+"_700bwp.webp"
