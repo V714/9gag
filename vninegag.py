@@ -45,8 +45,4 @@ def getLink(link):
         return check
     else:
         return iasf+gag+"_700bwp.webp"
-    
-    #if UnicodeDecodeError:
-    #    return check
-    #else:
-    #    return iasf+gag+"_700bwp.webp"
+   
